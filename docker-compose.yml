@@ -1,0 +1,19 @@
+app:
+  build: ./web
+  command: python manage.py runserver --host 0.0.0.0 --port 5000
+  ports:
+    - "5000:5000"
+  volumes:
+    - "C:/mongo_app"
+  links:
+    - mongodb
+
+mongodb:
+  image: mongo:3.0.2
+  ports:
+    - "27017:27017"
+
+mongo-seed:
+  build: ./db
+  links:
+    - mongodb

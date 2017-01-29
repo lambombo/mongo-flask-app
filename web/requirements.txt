@@ -1,0 +1,7 @@
+Flask==0.12
+Flask-Pymongo==0.4.1
+Flask-Script==2.0.5
+Flask-RESTful==0.3.5
+pythonwhois==2.4.3
+tqdm==4.10.0
+geopy==1.11.0

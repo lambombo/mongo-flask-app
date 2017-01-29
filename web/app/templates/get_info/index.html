@@ -1,0 +1,14 @@
+    {% extends "base/base_layout.html" %}
+    <!-- Portfolio Grid Section -->
+    {% block content %}
+    <section id="info_search">
+        <div class="container">
+          <script type="text/javascript">
+            function test_func(data) {
+            console.log(data);
+            }
+            test_func({{ data|safe }})
+          </script>
+        </div>
+    </section>
+    {% endblock %}
