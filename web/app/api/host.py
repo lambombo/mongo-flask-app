@@ -1,9 +1,9 @@
 from flask import jsonify
 from flask_restful import Resource
-from .api_util import build_domain_response, MongoJSONEncoder
-
-from . import api_ext
+from .api_util import build_domain_response#, MongoJSONEncoder
 from .. import mongo
+from . import api_ext
+
 
 class host(Resource):
     def get(self, id):

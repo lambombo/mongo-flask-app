@@ -1,19 +1,36 @@
-app:
-  build: ./web
-  command: python manage.py runserver --host 0.0.0.0 --port 5000
-  ports:
-    - "5000:5000"
-  volumes:
-    - "C:/mongo_app"
-  links:
-    - mongodb
+version: '2'
+services:
+  web:
+    restart: always
+    build: ./web
+    expose:
+      - "8000"
+    links:
+      - mongodb
+    volumes:
+        - /usr/src/app
+    env_file: .env
+    command: /usr/local/bin/gunicorn -w 2 -b :8000 app.wsgi
 
-mongodb:
-  image: mongo:3.0.2
-  ports:
-    - "27017:27017"
 
-mongo-seed:
-  build: ./db
-  links:
-    - mongodb
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+    volumes:
+      - /www/static
+    volumes_from:
+      - web
+    links:
+      - web:web
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  mongo-seed:
+    build: ./db
+    links:
+      - mongodb

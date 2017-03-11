@@ -2,8 +2,9 @@ from flask import jsonify
 from flask_restful import Resource
 from .api_util import build_domain_response
 
-from . import api_ext
 from .. import mongo
+from . import api_ext
+
 
 class hosts(Resource):
     def get(self):

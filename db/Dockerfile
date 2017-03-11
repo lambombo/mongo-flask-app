@@ -1,4 +1,4 @@
 FROM mongo
+FROM python:3.5-onbuild
 
-COPY /data/host_list.json /init.json
-CMD mongoimport --host mongodb --db reach-engine --collection hosts --type json --file /init.json --jsonArray
+CMD ["python", "init_db.py"]
